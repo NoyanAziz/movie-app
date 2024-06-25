@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Navbar,
@@ -16,17 +18,15 @@ import {
 
 export function TopNavbar() {
   return (
-    <Navbar isBordered>
+    <Navbar isBordered className="bg-slate-800">
       <NavbarContent justify="start">
         <NavbarBrand className="mr-4">
           {/* <AcmeLogo /> */}
-          <p className="hidden font-bold text-inherit sm:block">ACME</p>
+          <p className="hidden font-bold text-inherit sm:block">Movie App</p>
         </NavbarBrand>
         <NavbarContent className="hidden gap-3 sm:flex">
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Features
-            </Link>
+          <NavbarItem className="text-white">
+            <Link href="#">Features</Link>
           </NavbarItem>
           <NavbarItem isActive>
             <Link href="#" aria-current="page" color="secondary">
@@ -42,19 +42,6 @@ export function TopNavbar() {
       </NavbarContent>
 
       <NavbarContent as="div" className="items-center" justify="end">
-        <Input
-          classNames={{
-            base: "max-w-full sm:max-w-[10rem] h-10",
-            mainWrapper: "h-full",
-            input: "text-small",
-            inputWrapper:
-              "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          }}
-          placeholder="Type to search..."
-          size="sm"
-          startContent={<link rel="icon" href="/favicon.ico" sizes="any" />}
-          type="search"
-        />
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar
