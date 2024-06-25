@@ -2,11 +2,12 @@ import { type Movie } from "~/app/types";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") ?? "Batman";
-  console.log(process.env.TMDB_ACCESS_TOKEN);
+  const query = searchParams.get("query");
+  const page = searchParams.get("page") ?? 1;
+
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${"inside out"}&include_adult=false&language=en-US&page=1`,
+      `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`,
       {
         method: "GET",
         headers: {
