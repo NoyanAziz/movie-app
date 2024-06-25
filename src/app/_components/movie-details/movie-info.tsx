@@ -17,13 +17,13 @@ export const MovieInfo = ({ movieDetail }: { movieDetail: MovieDetail }) => {
   } = movieDetail;
 
   return (
-    <div className="flex flex-row">
-      <div>
+    <div className="mx-5 my-5 flex flex-row">
+      <div className="mx-2 overflow-hidden rounded-xl">
         {poster_path ? (
           <Image
             loader={() => TMDB_IMAGE_BASE_URL + poster_path}
-            width={300}
-            height={300}
+            width={900}
+            height={800}
             src={TMDB_IMAGE_BASE_URL + poster_path}
             alt={title}
           />
@@ -33,7 +33,7 @@ export const MovieInfo = ({ movieDetail }: { movieDetail: MovieDetail }) => {
           </div>
         )}
       </div>
-      <div className="flex flex-col">
+      <div className="mx-5 flex flex-col">
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold">{title}</h1>
           <p className="text-slate-500">

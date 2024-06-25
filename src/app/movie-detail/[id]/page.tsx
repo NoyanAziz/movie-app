@@ -29,7 +29,7 @@ export default async function MovieDetail({
   return (
     <div className="flex flex-col">
       <MovieInfo movieDetail={movieDetail} />
-      <div>
+      <div className="flex flex-shrink-0 flex-row ">
         {movieDetail?.credits?.cast?.map((cast) => (
           <MovieCastCard key={cast?.id} cast={cast} />
         ))}
