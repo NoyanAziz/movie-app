@@ -17,9 +17,8 @@ export async function GET(request: Request) {
       },
     );
     const data = (await response.json()) as { results: Movie[] };
-    console.log(data);
     return new Response(JSON.stringify(data.results), { status: 200 });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }

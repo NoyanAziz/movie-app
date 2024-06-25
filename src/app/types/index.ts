@@ -5,6 +5,32 @@ export interface Movie {
   poster_path: string;
 }
 
+interface Genre {
+  id: number;
+  name: string;
+}
+
+export interface MovieCast {
+  id: number;
+  name: string;
+  profile_path: string;
+  character: string;
+}
+
+export interface MovieDetail {
+  id: number;
+  title: string;
+  release_date: string;
+  poster_path: string;
+  runtime: number;
+  overview: string;
+  vote_average: number;
+  genres: Genre[];
+  credits: {
+    cast: MovieCast[];
+  };
+}
+
 export interface SearchParams {
   query?: string;
   page?: number;

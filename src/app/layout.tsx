@@ -23,7 +23,9 @@ export default async function RootLayout({
       <body>
         <Providers>
           {session && <TopNavbar />}
-          {children}
+          <main className="flex min-h-screen flex-col items-center justify-center bg-slate-700 text-white">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>

@@ -9,13 +9,12 @@ import Image from "next/image";
 
 export const MovieCard = ({ movie }: { movie: Movie }) => {
   return (
-    <Link key={movie?.id} href={`/api/movies/${movie.id}`}>
+    <Link key={movie?.id} href={`/movie-detail/${movie.id}`}>
       <Card
         className="h-[400px] w-[250px] bg-slate-500"
         shadow="sm"
         key={movie.id}
         isPressable
-        onPress={() => console.log("item pressed")}
       >
         <CardBody className="overflow-hidden p-0">
           {movie?.poster_path ? (
@@ -35,16 +34,19 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
         </CardBody>
         <CardFooter className="flex-col items-start text-small">
           <div className="flex">
-            <Tooltip color="primary" content={movie.title}>
-              <p className="... line-clamp-2 overflow-hidden text-ellipsis text-left">
+            <Tooltip
+              className="bg-slate-800 text-slate-200"
+              content={movie.title}
+            >
+              <p className="... line-clamp-2 overflow-hidden text-ellipsis text-left text-slate-300">
                 <b>{movie.title}</b>
               </p>
             </Tooltip>
           </div>
-          <div className="flex">
+          <div className="flex text-slate-300">
             <p>Year:</p>
             &nbsp;
-            <p className="line-clamp-2 overflow-hidden text-ellipsis text-left">
+            <p className="line-clamp-2 overflow-hidden text-ellipsis text-left text-slate-300">
               {new Date(movie.release_date).getFullYear()}
             </p>
           </div>

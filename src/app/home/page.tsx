@@ -26,13 +26,13 @@ export default async function Home({
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-slate-700 text-white">
+    <>
       <div className="w-full">
         <SearchBar />
       </div>
       <div className="grid grid-cols-1 gap-6 p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {movies?.map((movie) => <MovieCard key={movie?.id} movie={movie} />)}
       </div>
-    </main>
+    </>
   );
 }
