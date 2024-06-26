@@ -14,6 +14,18 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+
+model WatchlistMovie {
+    id              String  @id @default(cuid())
+    userId          String
+    movieId         String
+    title           String
+    poster_path     String?
+    release_year    String?
+
+    @@unique([userId, movieId])
+}
+
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())

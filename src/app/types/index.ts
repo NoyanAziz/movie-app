@@ -1,7 +1,7 @@
 export interface Movie {
   id: number;
   title: string;
-  release_date: string;
+  release_year: string;
   poster_path: string;
 }
 
@@ -26,6 +26,7 @@ export interface MovieDetail {
   overview: string;
   vote_average: number;
   genres: Genre[];
+  isFavorite: boolean;
   credits: {
     cast: MovieCast[];
   };
@@ -34,4 +35,12 @@ export interface MovieDetail {
 export interface SearchParams {
   query?: string;
   page?: number;
+}
+
+export interface WatchlistMovie {
+  movieId: string;
+  title: string;
+  poster_path: string;
+  release_year: string;
+  userId: string;
 }

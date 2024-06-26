@@ -42,7 +42,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
             </p>
           </Tooltip>
           <p className="text-left text-slate-300">
-            {new Date(movie.release_date).getFullYear()}
+            {new Date(movie.release_year).getFullYear()}
           </p>
         </CardFooter>
       </Card>
