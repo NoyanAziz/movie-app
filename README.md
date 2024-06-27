@@ -1,28 +1,31 @@
-# Create T3 App
+# Movie App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is a Movie App project that helps a user search movies and maintain a watchlist.
 
-## What's next? How do I make an app with this?
+This is initialized using [T3 Stack](https://create.t3.gg/) using `create-t3-app` command.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## How to setup this project
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+To get this project in your local machine, run the following in your terminal
+
+```
+    git clone https://github.com/NoyanAziz/movie-app.git
+    pnpm install
+    pnpm db:push
+```
+
+To run the application run
+
+`pnpm dev`
+
+To run the prisma studio run
+
+`npx prisma studio`
+
+## Technologies used in this project
 
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
+- [NextUI](https://nextui.org)
 - [Tailwind CSS](https://tailwindcss.com)
-
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
