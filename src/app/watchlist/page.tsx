@@ -13,7 +13,6 @@ export default async function Watchlist() {
   );
 
   const watchlistMovies = (await response.json()) as WatchlistMovie[];
-  console.log(watchlistMovies);
 
   return (
     <div className="grid grid-cols-1 gap-6 p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

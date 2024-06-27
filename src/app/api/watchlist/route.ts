@@ -5,15 +5,12 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const userId = searchParams.get("userId");
 
-  console.log("userId", userId);
   try {
     const response = await db.watchlistMovie.findMany({
       where: {
         userId: userId!,
       },
     });
-
-    console.log("response", response);
 
     return new Response(JSON.stringify(response), {
       status: 200,
@@ -62,7 +59,6 @@ export async function DELETE(request: Request) {
         },
       },
     });
-    console.log(response);
 
     return new Response(JSON.stringify(response), { status: 200 });
   } catch (error) {
