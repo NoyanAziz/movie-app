@@ -12,37 +12,40 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
   return (
     <Link key={movie?.id} href={`/movie-detail/${movie.id}`}>
       <Card
-        className="w-[200px] bg-slate-500"
-        shadow="sm"
+        isFooterBlurred
+        className="flex w-[200px] items-center justify-center bg-slate-950"
+        shadow="lg"
         key={movie.id}
         isPressable
       >
-        <CardBody className="h-[300px] overflow-hidden p-0">
+        <div className="h-[300px] content-center overflow-hidden p-0">
           {movie?.poster_path ? (
             <Image
-              loader={() => TMDB_IMAGE_BASE_URL + movie?.poster_path}
+              loader={() =>
+                TMDB_IMAGE_BASE_URL + movie?.poster_path + "?w=200&h=300"
+              }
               alt={movie?.title}
-              width={300}
+              width={200}
               height={400}
-              className="h-full w-full object-cover"
+              className="z-0 object-cover"
               src={TMDB_IMAGE_BASE_URL + movie?.poster_path}
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-slate-200">
-              <PhotoIcon className="h-24 w-24" />
+            <div className="mb-[50px]">
+              <PhotoIcon className="z-0 h-24 w-24" />
             </div>
           )}
-        </CardBody>
-        <CardFooter className="h-[70px] flex-col items-start text-small">
+        </div>
+        <CardFooter className="absolute bottom-0 z-10 h-[70px] flex-col items-start justify-between bg-slate-950/30 text-small">
           <Tooltip
             className="bg-slate-800 text-slate-200"
             content={movie.title}
           >
-            <p className="... line-clamp-1 overflow-hidden text-ellipsis text-left text-slate-300">
+            <p className="... line-clamp-1 overflow-hidden text-ellipsis text-left text-slate-100">
               <b>{movie.title}</b>
             </p>
           </Tooltip>
-          <p className="text-left text-slate-300">
+          <p className="dark/text-slate-100 text-left">
             {displayReleaseYear(movie?.release_date)}
           </p>
         </CardFooter>
