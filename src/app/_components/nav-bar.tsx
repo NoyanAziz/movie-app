@@ -25,13 +25,13 @@ export function TopNavbar({
   const pathname = usePathname();
 
   return (
-    <Navbar>
-      <NavbarBrand>
+    <Navbar maxWidth="xl">
+      <NavbarBrand className="grow-0">
         {/* <AcmeLogo /> */}
         <p className="font-bold text-inherit">Movie App</p>
       </NavbarBrand>
 
-      <NavbarContent className="hidden gap-4 lg:flex" justify="start">
+      <NavbarContent className="mx-20 gap-12">
         <NavbarItem isActive={pathname === "/home" || pathname === "/"}>
           <Link
             color={
@@ -68,7 +68,11 @@ export function TopNavbar({
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem isReadOnly key="profile" className="h-14 gap-2">
+            <DropdownItem
+              isReadOnly
+              key="profile"
+              className="h-14 cursor-default gap-2"
+            >
               <p className="font-semibold">Signed in as</p>
               <p className="font-semibold">{userName}</p>
             </DropdownItem>
