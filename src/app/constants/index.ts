@@ -15,4 +15,6 @@ export const LABELS = {
 export const DISPLAY_STRINGS = {
   APP_DESCRIPTION: "A movie search app with user's watchlist",
   SEARCH_BAR_PLACEHOLDER: "Type to search...",
+  ADD_TO_WATCHLIST: "Add to Watchlist",
+  REMOVE_FROM_LIST: "Remove from Watchlist",
 } as const;

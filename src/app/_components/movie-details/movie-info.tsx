@@ -8,7 +8,7 @@ import {
 import { Button, Tooltip } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
-import { TMDB_IMAGE_BASE_URL } from "~/app/constants";
+import { DISPLAY_STRINGS, TMDB_IMAGE_BASE_URL } from "~/app/constants";
 import { displayReleaseYear, displayRuntime } from "~/app/helpers";
 import { type MovieDetail } from "~/app/types";
 
@@ -32,7 +32,7 @@ export const MovieInfo = ({
     genres,
   } = movieDetail;
 
-  const addToWatchlist = async () => {
+  const chandleWatchlist = async () => {
     if (isFavorite) {
       const response = await fetch(
         `/api/watchlist?userId=${userId}&movieId=${id}`,
@@ -92,13 +92,17 @@ export const MovieInfo = ({
         </div>
         {movieDetail?.id && (
           <Tooltip
-            content="Add to watchlist"
+            content={
+              isFavorite
+                ? DISPLAY_STRINGS.REMOVE_FROM_LIST
+                : DISPLAY_STRINGS.ADD_TO_WATCHLIST
+            }
             className="bg-slate-800 text-slate-200"
           >
             <Button
               isIconOnly
               className="rounded-full bg-slate-800"
-              onClick={() => addToWatchlist()}
+              onClick={() => chandleWatchlist()}
             >
               {isFavorite ? (
                 <BookmarkSlashIcon className="h-5 w-5 cursor-pointer text-slate-500" />

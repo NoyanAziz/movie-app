@@ -32,7 +32,9 @@ export default async function Home({
         <SearchBar />
       </div>
       <div className="grid grid-cols-1 gap-6 p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {movies?.map((movie) => <MovieCard key={movie?.id} movie={movie} />)}
+        {movies?.map((movie) => (
+          <MovieCard userId={session?.user?.id} key={movie?.id} movie={movie} />
+        ))}
       </div>
     </>
   );
