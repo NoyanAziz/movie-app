@@ -68,11 +68,11 @@ export const MovieInfo = ({
 
   return (
     <div className="mx-5 my-5 flex flex-row">
-      <div className="overflow-hidden rounded-xl">
+      <div className="h-[450px] overflow-hidden rounded-xl">
         {poster_path ? (
           <Image
-            loader={() => TMDB_IMAGE_BASE_URL + poster_path}
-            width={900}
+            loader={() => TMDB_IMAGE_BASE_URL + poster_path + "&w=600"}
+            width={300}
             height={800}
             src={TMDB_IMAGE_BASE_URL + poster_path}
             alt={title}

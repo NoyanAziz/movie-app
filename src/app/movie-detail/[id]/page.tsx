@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { MovieCastCard } from "~/app/_components/movie-details/movie-cast-card";
+import { MovieCastInfo } from "~/app/_components/movie-details/movie-cast-info";
 import { MovieInfo } from "~/app/_components/movie-details/movie-info";
 import { APPLICATION_BASE_URL } from "~/app/constants";
 import { type MovieDetail } from "~/app/types";
@@ -26,19 +26,14 @@ export default async function MovieDetail({
     movieDetail = (await response.json()) as MovieDetail;
   }
 
+  if (!movieDetail?.id) {
+    redirect("/");
+  }
+
   return (
     <div className="flex flex-col">
       <MovieInfo movieDetail={movieDetail} userId={userId} />
-      <div className="bg-slate-100">
-        <h1 className="mx-5 my-2 flex items-center justify-center text-3xl font-bold text-slate-800">
-          Movie Cast
-        </h1>
-        <div className="flex grid grid-cols-1 justify-items-center gap-6 p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {movieDetail?.credits?.cast?.map((cast) => (
-            <MovieCastCard key={cast?.id} cast={cast} />
-          ))}
-        </div>
-      </div>
+      <MovieCastInfo cast={movieDetail?.credits?.cast || []} />
     </div>
   );
 }

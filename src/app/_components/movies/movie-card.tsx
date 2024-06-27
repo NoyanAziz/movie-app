@@ -21,9 +21,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
         <div className="h-[300px] content-center overflow-hidden p-0">
           {movie?.poster_path ? (
             <Image
-              loader={() =>
-                TMDB_IMAGE_BASE_URL + movie?.poster_path + "?w=200&h=300"
-              }
+              loader={() => TMDB_IMAGE_BASE_URL + movie?.poster_path + "?w=300"}
               alt={movie?.title}
               width={200}
               height={400}
