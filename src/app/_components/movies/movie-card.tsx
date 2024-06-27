@@ -6,6 +6,7 @@ import Link from "next/link";
 import { TMDB_IMAGE_BASE_URL } from "~/app/constants";
 import { type Movie } from "~/app/types";
 import Image from "next/image";
+import { displayReleaseYear } from "~/app/helpers";
 
 export const MovieCard = ({ movie }: { movie: Movie }) => {
   return (
@@ -42,7 +43,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
             </p>
           </Tooltip>
           <p className="text-left text-slate-300">
-            {new Date(movie.release_year).getFullYear()}
+            {displayReleaseYear(movie?.release_date)}
           </p>
         </CardFooter>
       </Card>

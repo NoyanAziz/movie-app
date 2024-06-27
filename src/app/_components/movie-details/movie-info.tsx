@@ -9,6 +9,7 @@ import { Button, Tooltip } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
 import { TMDB_IMAGE_BASE_URL } from "~/app/constants";
+import { displayReleaseYear, displayRuntime } from "~/app/helpers";
 import { type MovieDetail } from "~/app/types";
 
 export const MovieInfo = ({
@@ -55,9 +56,7 @@ export const MovieInfo = ({
           movieId: id.toString(),
           title,
           poster_path,
-          release_year:
-            (release_date && new Date(release_date).getFullYear().toString()) ||
-            "",
+          release_year: displayReleaseYear(release_date),
         }),
       });
 
@@ -87,6 +86,9 @@ export const MovieInfo = ({
       <div className="mx-10 flex flex-col gap-y-5">
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold">{title}</h1>
+          <p className="text-sm text-slate-300">
+            {genres?.map((genre) => genre.name).join(", ")}
+          </p>
         </div>
         {movieDetail?.id && (
           <Tooltip
@@ -107,14 +109,12 @@ export const MovieInfo = ({
           </Tooltip>
         )}
         <div className="flex flex-col">
-          <p className="text-lg font-bold">Plot Summary</p>
+          <p className="text-lg font-bold">Summary</p>
           <p className="text-slate-300">{overview}</p>
         </div>
         <div className="flex flex-col">
           <p className="text-lg font-bold">Release Year</p>
-          <p className="text-slate-300">
-            {release_date && new Date(release_date).getFullYear()}
-          </p>
+          <p className="text-slate-300">{displayReleaseYear(release_date)}</p>
         </div>
         <div className="flex flex-col">
           <p className="text-lg font-bold">Genres</p>
@@ -128,7 +128,7 @@ export const MovieInfo = ({
         </div>
         <div className="flex flex-col">
           <p className="text-lg font-bold">Runtime</p>
-          <p className="text-slate-300">{runtime} minutes</p>
+          <p className="text-slate-300">{displayRuntime(runtime)}</p>
         </div>
       </div>
     </div>

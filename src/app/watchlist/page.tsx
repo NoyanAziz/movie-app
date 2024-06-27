@@ -19,7 +19,11 @@ export default async function Watchlist() {
       {watchlistMovies?.map((movie) => (
         <MovieCard
           key={movie?.movieId}
-          movie={{ ...movie, id: parseInt(movie?.movieId) }}
+          movie={{
+            ...movie,
+            release_date: movie?.release_year,
+            id: parseInt(movie?.movieId),
+          }}
         />
       ))}
     </div>
