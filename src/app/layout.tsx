@@ -18,12 +18,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerAuthSession();
+
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} dark`}>
       <body>
         <Providers>
-          {session && <TopNavbar />}
-          <main className="flex min-h-screen flex-col items-center justify-center bg-slate-700 text-white">
+          {session?.user && (
+            <TopNavbar
+              userImage={session?.user?.image ?? ""}
+              userName={session?.user?.name ?? "Guest"}
+            />
+          )}
+          <main className="flex min-h-screen flex-col items-center justify-center bg-slate-900 text-white">
             {children}
           </main>
         </Providers>

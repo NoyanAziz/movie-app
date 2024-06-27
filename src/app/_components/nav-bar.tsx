@@ -13,34 +13,48 @@ import {
   DropdownMenu,
   Avatar,
 } from "@nextui-org/react";
-// import { AcmeLogo } from "./AcmeLogo.jsx";
+import { usePathname } from "next/navigation";
 
-export function TopNavbar() {
+export function TopNavbar({
+  userImage,
+  userName,
+}: {
+  userImage: string;
+  userName: string;
+}) {
+  const pathname = usePathname();
+
   return (
-    <Navbar isBordered className="bg-slate-800">
-      <NavbarContent justify="start">
-        <NavbarBrand className="mr-4">
-          {/* <AcmeLogo /> */}
-          <p className="hidden font-bold text-inherit sm:block">Movie App</p>
-        </NavbarBrand>
-        <NavbarContent className="hidden gap-3 sm:flex">
-          <NavbarItem className="text-white">
-            <Link href="#">Features</Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Link href="#" aria-current="page" color="secondary">
-              Customers
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Integrations
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
+    <Navbar>
+      <NavbarBrand>
+        {/* <AcmeLogo /> */}
+        <p className="font-bold text-inherit">Movie App</p>
+      </NavbarBrand>
+
+      <NavbarContent className="hidden gap-4 lg:flex" justify="start">
+        <NavbarItem isActive={pathname === "/home" || pathname === "/"}>
+          <Link
+            color={
+              pathname === "/home" || pathname === "/"
+                ? "primary"
+                : "foreground"
+            }
+            href="/home"
+          >
+            Home
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive={pathname === "/watchlist"}>
+          <Link
+            href="/watchlist"
+            color={pathname === "/watchlist" ? "primary" : "foreground"}
+          >
+            Watchlist
+          </Link>
+        </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent as="div" className="items-center" justify="end">
+      <NavbarContent as="div" justify="end">
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar
@@ -48,22 +62,16 @@ export function TopNavbar() {
               as="button"
               className="transition-transform"
               color="secondary"
-              name="Jason Hughes"
+              name={userName.charAt(0)}
               size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              src={userImage}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
+            <DropdownItem isReadOnly key="profile" className="h-14 gap-2">
               <p className="font-semibold">Signed in as</p>
-              <p className="font-semibold">zoey@example.com</p>
+              <p className="font-semibold">{userName}</p>
             </DropdownItem>
-            <DropdownItem key="settings">My Settings</DropdownItem>
-            <DropdownItem key="team_settings">Team Settings</DropdownItem>
-            <DropdownItem key="analytics">Analytics</DropdownItem>
-            <DropdownItem key="system">System</DropdownItem>
-            <DropdownItem key="configurations">Configurations</DropdownItem>
-            <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
             <DropdownItem key="logout" color="danger">
               Log Out
             </DropdownItem>
