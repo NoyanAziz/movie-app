@@ -7,7 +7,7 @@ import { Card, CardHeader } from "@nextui-org/react";
 
 export const MovieCastInfo = ({ cast }: { cast: MovieCast[] }) => {
   return (
-    <Card className="bg-gray-800">
+    <Card className="m-5 bg-gray-800">
       <CardHeader className="flex justify-center">
         <h1 className="text-3xl font-bold">{LABELS.MOVIE_CAST}</h1>
       </CardHeader>

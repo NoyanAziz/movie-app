@@ -4,11 +4,13 @@ import {
   BookmarkIcon,
   BookmarkSlashIcon,
   PhotoIcon,
+  QueueListIcon,
 } from "@heroicons/react/24/solid";
 import { Button, Tooltip } from "@nextui-org/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import { DISPLAY_STRINGS, TMDB_IMAGE_BASE_URL } from "~/app/constants";
+import { DISPLAY_STRINGS, LABELS, TMDB_IMAGE_BASE_URL } from "~/app/constants";
 import { displayReleaseYear, displayRuntime } from "~/app/helpers";
 import { type MovieDetail } from "~/app/types";
 
@@ -32,7 +34,7 @@ export const MovieInfo = ({
     genres,
   } = movieDetail;
 
-  const chandleWatchlist = async () => {
+  const handleWatchlist = async () => {
     if (isFavorite) {
       const response = await fetch(
         `/api/watchlist?userId=${userId}&movieId=${id}`,
@@ -68,12 +70,12 @@ export const MovieInfo = ({
 
   return (
     <div className="mx-5 my-5 flex flex-row">
-      <div className="h-[450px] overflow-hidden rounded-xl">
+      <div className="max-h-[450px] w-full max-w-[300px] overflow-hidden rounded-xl">
         {poster_path ? (
           <Image
-            loader={() => TMDB_IMAGE_BASE_URL + poster_path + "&w=600"}
+            loader={() => TMDB_IMAGE_BASE_URL + poster_path + "?w=600"}
             width={300}
-            height={800}
+            height={450}
             src={TMDB_IMAGE_BASE_URL + poster_path}
             alt={title}
           />
@@ -91,47 +93,57 @@ export const MovieInfo = ({
           </p>
         </div>
         {movieDetail?.id && (
-          <Tooltip
-            content={
-              isFavorite
-                ? DISPLAY_STRINGS.REMOVE_FROM_LIST
-                : DISPLAY_STRINGS.ADD_TO_WATCHLIST
-            }
-            className="bg-slate-800 text-slate-200"
-          >
-            <Button
-              isIconOnly
-              className="rounded-full bg-slate-800"
-              onClick={() => chandleWatchlist()}
+          <div className="flex flex-row gap-3">
+            <Tooltip
+              content={DISPLAY_STRINGS.VIEW_WATCHLIST}
+              className="bg-slate-800 text-slate-200"
             >
-              {isFavorite ? (
-                <BookmarkSlashIcon className="h-5 w-5 cursor-pointer text-slate-500" />
-              ) : (
-                <BookmarkIcon className="h-5 w-5 cursor-pointer text-slate-500" />
-              )}
-            </Button>
-          </Tooltip>
+              <Button
+                as={Link}
+                isIconOnly
+                className="rounded-full bg-slate-800"
+                href="/watchlist"
+              >
+                <QueueListIcon className="h-5 w-5 cursor-pointer text-slate-400" />
+              </Button>
+            </Tooltip>
+
+            <Tooltip
+              content={
+                isFavorite
+                  ? DISPLAY_STRINGS.REMOVE_FROM_LIST
+                  : DISPLAY_STRINGS.ADD_TO_WATCHLIST
+              }
+              className="bg-slate-800 text-slate-200"
+            >
+              <Button
+                isIconOnly
+                className="rounded-full bg-slate-800"
+                onClick={() => handleWatchlist()}
+              >
+                {isFavorite ? (
+                  <BookmarkSlashIcon className="h-5 w-5 cursor-pointer text-slate-400" />
+                ) : (
+                  <BookmarkIcon className="h-5 w-5 cursor-pointer text-slate-400" />
+                )}
+              </Button>
+            </Tooltip>
+          </div>
         )}
-        <div className="flex flex-col">
-          <p className="text-lg font-bold">Summary</p>
+        <div className="flex w-[900px] flex-col">
+          <p className="text-lg font-bold">{LABELS.SUMMARY}</p>
           <p className="text-slate-300">{overview}</p>
         </div>
         <div className="flex flex-col">
-          <p className="text-lg font-bold">Release Year</p>
+          <p className="text-md font-bold">{LABELS.RELEASE_YEAR}</p>
           <p className="text-slate-300">{displayReleaseYear(release_date)}</p>
         </div>
         <div className="flex flex-col">
-          <p className="text-lg font-bold">Genres</p>
-          <p className="text-slate-300">
-            {genres?.map((genre) => genre.name).join(", ")}
-          </p>
+          <p className="text-md font-bold">{LABELS.USER_RATING}</p>
+          <p className="text-slate-300">{vote_average.toFixed(1)}</p>
         </div>
         <div className="flex flex-col">
-          <p className="text-lg font-bold">Rating</p>
-          <p className="text-slate-300">{vote_average}</p>
-        </div>
-        <div className="flex flex-col">
-          <p className="text-lg font-bold">Runtime</p>
+          <p className="text-md font-bold">{LABELS.RUNTIME}</p>
           <p className="text-slate-300">{displayRuntime(runtime)}</p>
         </div>
       </div>

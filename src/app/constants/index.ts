@@ -10,6 +10,9 @@ export const LABELS = {
   SUMMARY: "Summary",
   APP_TITLE: "Movie App",
   MOVIE_CAST: "Cast",
+  RELEASE_YEAR: "Release Year",
+  RUNTIME: "Runtime",
+  USER_RATING: "User Rating",
 } as const;
 
 export const DISPLAY_STRINGS = {
@@ -17,4 +20,5 @@ export const DISPLAY_STRINGS = {
   SEARCH_BAR_PLACEHOLDER: "Type to search...",
   ADD_TO_WATCHLIST: "Add to Watchlist",
   REMOVE_FROM_LIST: "Remove from Watchlist",
+  VIEW_WATCHLIST: "View Watchlist",
 } as const;
