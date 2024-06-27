@@ -9,18 +9,22 @@ This is initialized using [T3 Stack](https://create.t3.gg/) using `create-t3-app
 To get this project in your local machine, run the following in your terminal
 
 ```
-    git clone https://github.com/NoyanAziz/movie-app.git
-    pnpm install
-    pnpm db:push
+git clone https://github.com/NoyanAziz/movie-app.git
+pnpm install
+pnpm db:push
 ```
 
 To run the application run
 
-`pnpm dev`
+```
+pnpm dev
+```
 
 To run the prisma studio run
 
-`npx prisma studio`
+```
+npx prisma studio
+```
 
 ## Technologies used in this project
 
