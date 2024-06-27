@@ -14,6 +14,7 @@ import {
   Avatar,
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
+import { DISPLAY_STRINGS, LABELS } from "../constants";
 
 export function TopNavbar({
   userImage,
@@ -28,7 +29,7 @@ export function TopNavbar({
     <Navbar maxWidth="xl">
       <NavbarBrand className="grow-0">
         {/* <AcmeLogo /> */}
-        <p className="font-bold text-inherit">Movie App</p>
+        <p className="font-bold text-inherit">{LABELS.APP_TITLE}</p>
       </NavbarBrand>
 
       <NavbarContent className="mx-20 gap-12">
@@ -41,7 +42,7 @@ export function TopNavbar({
             }
             href="/home"
           >
-            Home
+            {LABELS.HOME}
           </Link>
         </NavbarItem>
         <NavbarItem isActive={pathname === "/watchlist"}>
@@ -49,7 +50,7 @@ export function TopNavbar({
             href="/watchlist"
             color={pathname === "/watchlist" ? "primary" : "foreground"}
           >
-            Watchlist
+            {LABELS.WATCHLIST}
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -73,11 +74,11 @@ export function TopNavbar({
               key="profile"
               className="h-14 cursor-default gap-2"
             >
-              <p className="font-semibold">Signed in as</p>
+              <p className="font-semibold">{DISPLAY_STRINGS.SIGNED_AS}</p>
               <p className="font-semibold">{userName}</p>
             </DropdownItem>
             <DropdownItem key="logout" color="danger">
-              Log Out
+              {LABELS.LOGOUT}
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>

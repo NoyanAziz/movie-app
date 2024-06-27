@@ -27,15 +27,15 @@ export default async function Home({
   }
 
   return (
-    <>
+    <div className="flex w-full flex-col px-20">
       <div className="w-full">
         <SearchBar />
       </div>
-      <div className="grid grid-cols-1 gap-6 p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="flex grid grid-cols-1 justify-items-center gap-6 gap-y-20 p-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {movies?.map((movie) => (
           <MovieCard userId={session?.user?.id} key={movie?.id} movie={movie} />
         ))}
       </div>
-    </>
+    </div>
   );
 }

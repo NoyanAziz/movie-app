@@ -12,19 +12,30 @@ export const MovieCard = ({
   movie,
   userId,
   isWatchlist,
+  removeMovieFromWatchlist,
 }: {
   movie: Movie;
   userId: string;
   isWatchlist?: boolean;
+  removeMovieFromWatchlist?: (value: number) => void;
 }) => {
   const removeFromWatchlist = async () => {
     try {
-      await fetch(`/api/watchlist?userId=${userId}&movieId=${movie?.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `/api/watchlist?userId=${userId}&movieId=${movie?.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
+
+      if (response.ok) {
+        if (removeMovieFromWatchlist) {
+          removeMovieFromWatchlist(movie?.id);
+        }
+      }
     } catch (err) {
       console.error(err);
     }
@@ -32,21 +43,19 @@ export const MovieCard = ({
   return (
     <div className="flex justify-end">
       {isWatchlist && (
-        <div className="absolute z-10 bg-slate-950 p-2">
-          (
+        <div className="absolute z-10 rounded-lg p-2">
           <Tooltip
             content={DISPLAY_STRINGS.REMOVE_FROM_LIST}
             className="bg-slate-800 text-slate-200"
           >
             <Button
               isIconOnly
-              className="rounded-full bg-slate-800"
+              className="rounded-full bg-slate-700"
               onClick={() => removeFromWatchlist()}
             >
-              <BookmarkSlashIcon className="h-5 w-5 text-slate-500" />
+              <BookmarkSlashIcon className="h-5 w-5 text-slate-400" />
             </Button>
           </Tooltip>
-          )
         </div>
       )}
       <Link key={movie?.id} href={`/movie-detail/${movie.id}`}>

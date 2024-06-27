@@ -1,7 +1,7 @@
 "use client";
 
 import { PhotoIcon } from "@heroicons/react/24/outline";
-import { Card, CardBody, CardFooter, Tooltip } from "@nextui-org/react";
+import { Card, CardFooter, Tooltip } from "@nextui-org/react";
 import Image from "next/image";
 import { TMDB_IMAGE_BASE_URL } from "~/app/constants";
 import { type MovieCast } from "~/app/types";

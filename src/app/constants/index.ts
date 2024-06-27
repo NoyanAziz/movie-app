@@ -13,6 +13,7 @@ export const LABELS = {
   RELEASE_YEAR: "Release Year",
   RUNTIME: "Runtime",
   USER_RATING: "User Rating",
+  LOGOUT: "Logout",
 } as const;
 
 export const DISPLAY_STRINGS = {
@@ -21,4 +22,5 @@ export const DISPLAY_STRINGS = {
   ADD_TO_WATCHLIST: "Add to Watchlist",
   REMOVE_FROM_LIST: "Remove from Watchlist",
   VIEW_WATCHLIST: "View Watchlist",
+  SIGNED_AS: "Signed in as",
 } as const;

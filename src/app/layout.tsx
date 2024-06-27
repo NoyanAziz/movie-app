@@ -30,7 +30,7 @@ export default async function RootLayout({
               userName={session?.user?.name ?? "Guest"}
             />
           )}
-          <main className="flex min-h-screen flex-col items-center justify-center bg-slate-900 text-white">
+          <main className="flex min-h-screen flex-col items-center bg-slate-900 text-white">
             {children}
           </main>
         </Providers>
