@@ -2,7 +2,7 @@ import { getServerAuthSession } from "~/server/auth";
 import { type SearchParams, type Movie } from "~/app/types";
 import { MovieCard } from "../_components/movies/movie-card";
 import { redirect } from "next/navigation";
-import { APPLICATION_BASE_URL } from "../constants";
+import { APPLICATION_BASE_URL, MAX_SEARCH_STRING_LENGTH } from "../constants";
 import SearchBar from "../_components/movies/search-bar";
 
 export default async function Home({
@@ -17,8 +17,9 @@ export default async function Home({
 
   let movies = [] as Movie[];
   if (query) {
+    const queryParam = query.substring(0, MAX_SEARCH_STRING_LENGTH);
     const response = await fetch(
-      `${APPLICATION_BASE_URL}/api/movies?query=${query}`,
+      `${APPLICATION_BASE_URL}/api/movies?query=${queryParam}`,
     );
     if (response.ok) {
       movies = (await response.json()) as Movie[];

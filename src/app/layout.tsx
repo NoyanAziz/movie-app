@@ -5,10 +5,11 @@ import { GeistSans } from "geist/font/sans";
 import { Providers } from "./providers";
 import { TopNavbar } from "./_components/nav-bar";
 import { getServerAuthSession } from "~/server/auth";
+import { DISPLAY_STRINGS, LABELS } from "./constants";
 
 export const metadata = {
-  title: "Movie App",
-  description: "A movie search app with user's watchlist",
+  title: LABELS.APP_TITLE,
+  description: DISPLAY_STRINGS.APP_DESCRIPTION,
   icons: [{ rel: "icon", url: "/logos/favicon.ico" }],
 };
 
