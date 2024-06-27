@@ -34,7 +34,7 @@ export const MovieInfo = ({
   const addToWatchlist = async () => {
     if (isFavorite) {
       const response = await fetch(
-        `/api/watchlist?userId="${userId}&movieId=${id}`,
+        `/api/watchlist?userId=${userId}&movieId=${id}`,
         {
           method: "DELETE",
           headers: {
@@ -46,13 +46,13 @@ export const MovieInfo = ({
         setIsFavorite(false);
       }
     } else {
-      const response = await fetch(`/api/watchlist?userId="${userId}`, {
+      const response = await fetch(`/api/watchlist?userId=${userId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          movie_id: id.toString(),
+          movieId: id.toString(),
           title,
           poster_path,
           release_year:
